@@ -28,7 +28,14 @@ Below is a list of short ECPPs for the least prime $p>10^c$ for $c=10,20,\ldots,
 The entries through $c=100$ were found by <a href="https://github.com/AndrewVSutherland/ShortPrimalityProofs/blob/main/short.gp">short.gp</a>
 on a single core.  The entries from $c=110$ through $c=200$ were found by <a href="parallel_short.py">parallel_short.py</a>,
 which runs single-threaded short.gp workers in parallel; the listed CPU time is for the winning
-worker unless the entry is explicitly labeled as a checkpointed, combined total.
+worker — approximately the wall time of the parallel search — at a worker count that was not
+recorded, so it understates the total CPU time spent.  Calibration reruns with full accounting
+(<code>/usr/bin/time -v</code>, summing all workers) measured total CPU of about $1.5\times 10^3$ s for $c=110$
+(30 workers), $1.5\times 10^5$ s for $c=150$ and $2.6\times 10^5$ s for $c=180$ (192 workers each); a $c=200$ rerun
+was aborted after $4.5\times 10^5$ CPU seconds without finding a certificate (a worker overflowed the
+1 GB PARI stack that short.gp configures).  Since the expected total work of this memoryless search
+is independent of the worker count, these totals also estimate the cost of the original runs: the
+listed times for $c=110..200$ understate total effort by roughly two orders of magnitude.
 
 <details>
 <summary>$p=10^{10}+19$,&nbsp; via <a href="https://github.com/AndrewVSutherland/ShortPrimalityProofs/blob/main/short.gp">short.gp</a> (&lt;1 CPU second, 2 levels).</summary>
